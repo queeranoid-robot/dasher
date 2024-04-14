@@ -209,7 +209,7 @@ dasher_editor_initialise(DasherEditor *pSelf, DasherAppSettings *pAppSettings, G
   dasher_editor_internal_handle_font(pSelf,
 				     pPrivate->pAppSettings->GetString(APP_SP_EDIT_FONT).c_str());
 
-  dasher_editor_external_create_buffer(pSelf);
+  dasher_editor_external_create_buffer(pSelf, isdirect(pPrivate->pAppSettings));
   // TODO: is this still needed?
   dasher_editor_internal_create_buffer(pSelf);
 

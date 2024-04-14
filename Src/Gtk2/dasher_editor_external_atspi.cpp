@@ -56,7 +56,7 @@ dasher_editor_external_finalize(GObject *pSelf) {
 }
 
 void
-dasher_editor_external_create_buffer(DasherEditor *pSelf) {
+dasher_editor_external_create_buffer(DasherEditor *pSelf, bool bDirectMode) {
   DasherEditorPrivate *pPrivate = DASHER_EDITOR_GET_PRIVATE(pSelf);
   DasherEditorExternalPrivate *p;
 
@@ -74,6 +74,9 @@ dasher_editor_external_create_buffer(DasherEditor *pSelf) {
   p->pAccessibleText = NULL;
   p->current_caret_position = -1;
   pPrivate->pExtPrivate = p;
+
+  if (bDirectMode)
+    listen_to_bus(pSelf);
 
 #ifdef DEBUG_ATSPI
   printf("dasher_editor_external_create_buffer: pPrivate=%p, pExtPrivate=%p\n", pPrivate, p);

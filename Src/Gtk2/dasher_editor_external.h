@@ -4,7 +4,7 @@
 #include "dasher_editor.h"
 
 void dasher_editor_external_finalize(GObject*);
-void dasher_editor_external_create_buffer(DasherEditor*); //  for dasher_editor_external_initialise, and calls focus bits
+void dasher_editor_external_create_buffer(DasherEditor*, bool bDirectMode); //  for dasher_editor_external_initialise, and calls focus bits
 void dasher_editor_external_output(DasherEditor *pSelf, const char *szText, int iOffset);
 void dasher_editor_external_delete(DasherEditor *pSelf, int iLength, int iOffset);
 std::string dasher_editor_external_get_context(DasherEditor *pSelf, int iOffset, int iLength);
