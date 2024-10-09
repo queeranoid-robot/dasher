@@ -13,6 +13,8 @@
 /* Just to make sure the symbols for the editor are visible. */
 // #include <Gtk2/dasher_editor_internal.h>
 
+#include "rust_test_lib.h"
+
 #include "dasher.h"
 #include "dasher_main.h"
 
@@ -106,6 +108,7 @@ void clean_up();
 
 extern "C" gint main_key_snooper(GtkWidget *pWidget, GdkEventKey *pEvent, gpointer pUserData);
 
+extern int32_t test();
 
 int main(int argc, char *argv[]) {
 
@@ -117,6 +120,8 @@ int main(int argc, char *argv[]) {
   bindtextdomain(PACKAGE, LOCALEDIR);
   bind_textdomain_codeset(PACKAGE, "UTF-8");
   textdomain(PACKAGE);
+
+  g_print("rust test function returned %d\n", test());
 
   //  gchar *szOptionAppstyle = NULL;
 

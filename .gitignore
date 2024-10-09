@@ -52,6 +52,7 @@ Src/DasherCore/.deps/
 Src/DasherCore/Alphabet/.deps/
 Src/DasherCore/Alphabet/.dirstamp
 
+Src/rust/rust_test_lib/target/
 
 # Eclipse
 .autotools
@@ -63,3 +64,8 @@ Src/DasherCore/Alphabet/.dirstamp
 
 # Visual Studio Code
 .ionide/
+.vscode/
+
+build/
+bin/
+

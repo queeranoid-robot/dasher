@@ -271,6 +271,8 @@ AC_CONFIG_FILES([Data/dasher.desktop.in
 		 Src/DasherCore/Makefile
 		 Src/DasherCore/LanguageModelling/Makefile
 		 Src/Gtk2/Makefile
+		 Src/rust/Makefile
+		 Src/rust/rust_test_lib/Makefile
 		 po/Makefile.in
 ])
 
