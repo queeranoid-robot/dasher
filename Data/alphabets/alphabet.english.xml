@@ -274,7 +274,6 @@
 <s b="108" d="&#x2019;" t="&#x2019;" note="right single quotation mark and apostrophe" />
 <s b="109" d="`" t="`" note="left quote from keyboard" />
 <s b="105" d="&#x25cc;&#x0313;" t="&apos;" note=" apostrophe"/>
-<s b="9"  d="&#x25CA;" t="&#x9;" note="TAB (represented by a diamond)"/>
 <s b="106" d="&#x2014;" t="&#x2014;" note="em dash"/>
 <s b="107" d="&#x2013;" t="&#x2013;" note="en dash"/>
 <s b="100" d="-" t="-"/>
@@ -284,6 +283,7 @@
 <s b="104" d="!" t="!"/>
 <s b="100" d="," t=","/>
 <s d="&#183;" t="." b="104"/>
+<s b="9"  d="&#x2B7E;" t="&#x9;" note="TAB"/>
 </group>
 </alphabet>
 <alphabet name="English, lower case">
