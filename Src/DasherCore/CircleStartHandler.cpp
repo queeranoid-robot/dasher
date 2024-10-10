@@ -44,7 +44,8 @@ CDasherScreen::point CCircleStartHandler::CircleCenter(CDasherView *pView) {
   // Math.min(screen width, screen height) * LP_CIRCLE_PERCENT / 100
   // - should we?
   screenint iEdgeX, iEdgeY;
-  m_pView->Dasher2Screen(CDasherModel::ORIGIN_X, CDasherModel::ORIGIN_Y + (CDasherModel::MAX_Y*GetLongParameter(LP_CIRCLE_PERCENT))/100, iEdgeX, iEdgeY);
+  // m_pView->Dasher2Screen(CDasherModel::ORIGIN_X, CDasherModel::ORIGIN_Y + (CDasherModel::MAX_Y*GetLongParameter(LP_CIRCLE_PERCENT))/100, iEdgeX, iEdgeY);
+  m_pView->Dasher2Screen(CDasherModel::ORIGIN_X, CDasherModel::ORIGIN_Y + (CDasherModel::MAX_Y*6)/100, iEdgeX, iEdgeY); //! hardcoded 5% for now
 
   const Opts::ScreenOrientations iDirection(m_pView->GetOrientation());
 
@@ -87,7 +88,7 @@ void CCircleStartHandler::Timer(unsigned long iTime, dasherint mouseX, dasherint
   if (inCircleNow) {
     if (m_bInCircle) {
       //still in circle...check they aren't still in there after prev. activation
-      if (m_iEnterTime != std::numeric_limits<long>::max() && iTime - m_iEnterTime > 1000) {
+      if (m_iEnterTime != std::numeric_limits<long>::max() && (iTime - m_iEnterTime > 2000 || (!m_pFilter->isPaused() && iTime - m_iEnterTime > 900))) { //TODO Refactor into user-settable parameter
         //activate!
         if (m_pFilter->isPaused())
           m_pFilter->run(iTime);

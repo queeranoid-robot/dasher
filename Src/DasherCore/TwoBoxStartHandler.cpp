@@ -4,6 +4,9 @@
 
 using namespace Dasher;
 
+const int BOX_START_WAIT = 2000;
+const int SECOND_BOX_START_WAIT = 3500; //TODO - these should be settings
+
 CTwoBoxStartHandler::CTwoBoxStartHandler(CDefaultFilter *pCreator)
 : CStartHandler(pCreator), CSettingsUser(pCreator), m_bFirstBox(true), m_iBoxEntered(std::numeric_limits<long>::max()) {
 }
@@ -43,12 +46,12 @@ void CTwoBoxStartHandler::Timer(unsigned long iTime, dasherint iDasherX, dasheri
   pView->Dasher2Screen(iDasherX, iDasherY, iNewScreenX, iNewScreenY);
 
   if ((iNewScreenY >= iBoxMin) && (iNewScreenY <= iBoxMax) 
-	  && (iNewScreenX >= 8) && (iNewScreenX <= pView->Screen()->GetWidth() - 16)
-	  && pView->Screen()->IsWindowUnderCursor()) {
+	  && (iNewScreenX >= 8) && (iNewScreenX <= pView->Screen()->GetWidth() - 16)) {
+	  //&& pView->Screen()->IsWindowUnderCursor()) { //TODO - this should be a setting
     if(m_iBoxEntered == std::numeric_limits<long>::max()) {
       m_iBoxEntered = iTime;
     }
-    else if (iTime - m_iBoxEntered > 2000) {
+    else if (iTime - m_iBoxEntered > BOX_START_WAIT) {
       m_iBoxStart = iTime;
 
       if(m_bFirstBox)
@@ -59,7 +62,7 @@ void CTwoBoxStartHandler::Timer(unsigned long iTime, dasherint iDasherX, dasheri
     }
   } else {
     //not in box
-    if(!m_bFirstBox && (iTime - m_iBoxStart > 2000))
+    if(!m_bFirstBox && (iTime - m_iBoxStart > SECOND_BOX_START_WAIT))
       m_bFirstBox=true;
     
     m_iBoxEntered = std::numeric_limits<long>::max();
