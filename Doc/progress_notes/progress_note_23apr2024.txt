@@ -1,0 +1,16 @@
+This is my second time using my head to write in normal mode with two input dimensions.
+
+I.e. I'm using both up/ down and left/ right head movements to move the cursor. It's a bit challenging at first to (no pun intended - well, maybe just a little) wrap your head around controlling both movements simultaneously.
+
+And now that I've done itfor a bit and switched back to controlling the cursor with one movement with one degree of freedom- left and right- I can see that the existing method is many times more efficient and easier to contr.
+
+In fact I think I'm actually still getting better with this particular modality. I don't recall averaging- well, earlier, 1.5-1.6 and then eventually, until I got distracted by Rose, 1.7-1.9.
+
+It seems that looking as far ahead towards where I want to go is very important. Getting distracted by what's being input into the text buffer is something that can be costly. Therefore, a good working memory and attention is required for efficient text entry, which will limit this software's usefullness in the brain injury population.
+
+TODO: debug moving
+	- can't move to the end of the buffer? I couldn't move past the period in the sentence above after I'd finished editing
+	- trying to move back 1 word actually resulted in moving back two words, but moving forwards one word immediately after worked as expected for some reason?
+	- 
+
+TODO control mode- ctrl-z when undoing a movement
