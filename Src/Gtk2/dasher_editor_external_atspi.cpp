@@ -112,7 +112,24 @@ dasher_editor_external_toggle_direct_mode(DasherEditor *pSelf, bool direct) {
 void
 dasher_editor_external_output(DasherEditor *pSelf, const char *szText, int iOffset /* unused */) {
   if (!initSPI()) return;
-  atspi_generate_keyboard_event(0, szText, ATSPI_KEY_STRING, NULL);
+
+  switch (*szText)
+  {
+  case '\n':
+    atspi_generate_keyboard_event(XK_Return, NULL, ATSPI_KEY_SYM, NULL);
+    break;
+  
+  case '\t':
+    atspi_generate_keyboard_event(XK_Tab, NULL, ATSPI_KEY_SYM, NULL);
+    break;
+  
+  default:
+    atspi_generate_keyboard_event(0, szText, ATSPI_KEY_STRING, NULL);
+    break;
+  }
+  
+  DasherEditorPrivate *p = DASHER_EDITOR_GET_PRIVATE(pSelf);
+  p->pExtPrivate->current_caret_position = iOffset + 1;
 }
 
 void
@@ -255,7 +272,7 @@ dasher_editor_external_handle_caret(DasherEditor *pSelf, const AtspiEvent *pEven
     if (caret == pPrivate->pExtPrivate->current_caret_position) {
       return;
     }
-    pPrivate->pExtPrivate->current_caret_position = -1;
+    pPrivate->pExtPrivate->current_caret_position = caret;
 
     g_object_ref(textobj);
 
@@ -269,6 +286,8 @@ dasher_editor_external_handle_caret(DasherEditor *pSelf, const AtspiEvent *pEven
     g_signal_emit_by_name(G_OBJECT(pSelf), "context_changed", G_OBJECT(pSelf), NULL, NULL);
     pPrivate->bInControlAction = false;
   }
+
+  //* Why not rebuild the tree from a limited window around the caret?
 #ifdef DEBUG_ATSPI
   else {
     printf("XXX Received text-caret-moved from source which doesn't implemenent AtspiText\n");
