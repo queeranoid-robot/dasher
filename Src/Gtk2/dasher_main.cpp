@@ -348,6 +348,9 @@ dasher_main_load_interface(DasherMain *pSelf) {
   const char *szGUIFilename = NULL;
   const char *szPrefGUIFilename = NULL;
 
+  g_type_ensure(DASHER_TYPE_EDITOR);
+  g_type_ensure(GTK_DASHER_TYPE_CONTROL);
+
   szGUIFilename = PROGDATA "/dasher.traditional.ui";
   szPrefGUIFilename = PROGDATA "/dasher.preferences.ui";
 

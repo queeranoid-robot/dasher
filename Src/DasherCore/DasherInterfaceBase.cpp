@@ -127,15 +127,31 @@ void CDasherInterfaceBase::Realize(unsigned long ulTime) {
   DASHER_ASSERT(m_DasherScreen ? m_pDasherView!=NULL : m_pDasherView==NULL);
 
   srand(ulTime);
- 
+
   m_AlphIO = new CAlphIO(this);
+  #ifdef CMAKE_BUILD /* I'm not 100% sure about the original globbing
+                        scheme with autoconf, and I don't necessarily
+                        want to break the autoconf build, so this seems
+                        like the least inelegant way to ensure
+                        backwards compatibility -kd */
+  ScanFiles(m_AlphIO, "alphabets/alphabet*.xml");
+  #else
   ScanFiles(m_AlphIO, "alphabet*.xml");
+  #endif
 
   m_ColourIO = new CColourIO(this);
+  #ifdef CMAKE_BUILD
+  ScanFiles(m_ColourIO, "colours/colour*.xml");
+  #else
   ScanFiles(m_ColourIO, "colour*.xml");
+  #endif
 
   m_ControlBoxIO = new CControlBoxIO(this);
+  #ifdef CMAKE_BUILD
+  ScanFiles(m_ControlBoxIO, "control/control*.xml");
+  #else
   ScanFiles(m_ControlBoxIO, "control*.xml");
+  #endif
 
   ChangeColours();
 
