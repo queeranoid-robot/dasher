@@ -1,3 +1,3 @@
 extern "C" {
-double round(double);
+double round(double) noexcept(true);
 }
